@@ -2,9 +2,14 @@
 
 <ul>
   <% @tasks.each do |task| %>
-  <li><%= task.task %></li>
+    <li><a href="/tasks/<%= task.id %>/edit"><%= task.task %></a></li>
+      <form action="/tasks/<%= task.id %>/edit" method="post">
+        <input name="_method" type="hidden" value="patch">
+        <input name="done" type="hidden" value="true">
+        <input name="task" type="hidden" value="<%= task.task %>">
+        <button>Mark done</button>
+      </form>
   <% end %>
 </ul>
 
 <p><a href="/tasks/new/">Add a new task</a></p>
-
